@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Member">
+
+<select id="allMember" resultType="mul.cam.a.dto.MemberDto">
+	select id, pwd, name, email, auth
+	from member
+</select>
+
+<select id="idcheck" parameterType="String" resultType="Integer">
+	select count(*)
+	from member
+	where id=#{id}
+</select>
+
+<insert id="addmember" parameterType="mul.cam.a.dto.MemberDto">
+	insert into member(id, pwd, name, email, auth)
+	values(#{id}, #{pwd}, #{name}, #{email}, 3)
+</insert>
+
+<select id="login" parameterType="mul.cam.a.dto.MemberDto"
+	resultType="mul.cam.a.dto.MemberDto">
+	select id, name, email
+	from member
+	where id=#{id} and pwd=#{pwd}
+</select>
+
+</mapper>
+
+
+
